@@ -1,15 +1,27 @@
+import os
+from dotenv import load_dotenv
 from telegram.client import Telegram
 from telegram.text import Spoiler
 
-print("HIIIIIIIII")
+# Carregar variáveis de ambiente do arquivo .env
+load_dotenv()
 
+# Recuperar as variáveis de ambiente
+api_id = os.getenv('API_ID')
+api_hash = os.getenv('API_HASH')
+phone_number = os.getenv('PHONE_NUMBER')
+database_encryption_key = os.getenv('DATABASE_ENCRYPTION_KEY')
+files_directory = os.getenv('FILES_DIRECTORY')
+
+# Configuração do Telegram usando as variáveis de ambiente
 tg = Telegram(
-    api_id='18018658',
-    api_hash='85d8e89157145ed33a4029df2b302be6',
-    phone='+5511949097973',  # you can pass 'bot_token' instead
-    database_encryption_key='changekey123',
-    files_directory='/tmp/.tdlib_files/',
+    api_id=api_id,
+    api_hash=api_hash,
+    phone=phone_number,  # Ou use 'bot_token' se estiver usando um bot
+    database_encryption_key=database_encryption_key,
+    files_directory=files_directory,
 )
+
 tg.login()
 
 # If this is the first run, the library needs to preload all chats.
